@@ -3,7 +3,7 @@ import { cameraWithTensors } from "@tensorflow/tfjs-react-native";
 import { Camera } from "expo-camera";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { emotionEndpoint } from "./config";
+import { endpoint, emotionPath } from "./config";
 
 const TensorCamera = cameraWithTensors(Camera);
 const RESIZE_HEIGHT = 640;
@@ -58,7 +58,7 @@ const App = () => {
           headers: { Accept: "application/json", "Content-Type": "application/json" },
           body: JSON.stringify({ data }),
         };
-        const response = await fetch(emotionEndpoint, request);
+        const response = await fetch(endpoint + emotionPath, request);
         setLabel((await response.json())["class"]);
       } catch (err) {
         console.log(err);
