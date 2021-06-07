@@ -17,7 +17,7 @@ const ytProps = {
   height: 0,
   forceAndroidAutoplay: true,
   webViewStyle: { opacity: 0 },
-  // initialPlayerParams: { loop: true },
+  initialPlayerParams: { loop: true },
 };
 
 const tfProps = {

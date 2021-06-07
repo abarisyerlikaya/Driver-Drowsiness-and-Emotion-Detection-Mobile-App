@@ -20,6 +20,7 @@ const Tracking = () => {
   const [songTitle, setSongTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [label, setLabel] = useState("");
+  const [shouldPlayDrowsy, setShouldPlayDrowsy] = useState(false);
   const ref = useRef();
 
   // Initialize
@@ -77,11 +78,7 @@ const Tracking = () => {
 
         // If 3 of last 5 labels are drowsy, play drowsy music right now
         const drowsyCountInLast5 = last5Labels.reduce((prev, next) => prev + (next === "drowsy"), 0);
-        if (drowsyCountInLast5 >= 3 && playlist.name !== "drowsy") {
-          setPlaylist(playlists.drowsy[0]);
-          restartSong();
-          setLabelCounts({ drowsy: 0, neutral: 0, angry: 0, sad: 0, happy: 0 });
-        }
+        if (drowsyCountInLast5 >= 3) setShouldPlayDrowsy(true);
       } catch (err) {
         Alert.alert("An error occurred!");
       }
@@ -90,6 +87,17 @@ const Tracking = () => {
 
     loop();
   };
+
+  useEffect(() => {
+    if (shouldPlayDrowsy) {
+      if (playlist.name !== playlists.drowsy[0].name) {
+        setPlaylist(playlists.drowsy[0]);
+        restartSong();
+        setLabelCounts({ drowsy: 0, neutral: 0, angry: 0, sad: 0, happy: 0 });
+      }
+      setShouldPlayDrowsy(false);
+    }
+  }, [shouldPlayDrowsy]);
 
   useEffect(() => console.log(labelCounts), [labelCounts]);
 
@@ -124,9 +132,7 @@ const Tracking = () => {
   };
 
   // Play / pause function
-  const togglePlaying = useCallback(async () => {
-    setPlaying(prev => !prev);
-  }, []);
+  const togglePlaying = useCallback(async () => setPlaying(prev => !prev), []);
 
   const seekTo = async seconds => {
     const currentTime = await ref.current.getCurrentTime();
