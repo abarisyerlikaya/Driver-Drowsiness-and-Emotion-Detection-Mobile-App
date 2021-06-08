@@ -24,8 +24,8 @@ const ytProps = {
 const tfProps = {
   type: Camera.Constants.Type.front,
   ratio: "1:1",
-  cameraTextureHeight: 1440,
-  cameraTextureWidth: 1440,
+  cameraTextureHeight: 840,
+  cameraTextureWidth: 840,
   resizeHeight: RESIZE_HEIGHT,
   resizeWidth: RESIZE_WIDTH,
   resizeDepth: 3,
