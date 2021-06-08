@@ -166,8 +166,8 @@ const Tracking = () => {
 
   // Log current state
   useEffect(() => {
-    console.log(`Detected label: ${label}\nCurrent state: \n${labelCounts}`);
-  }, [label, labelCounts]);
+    console.log(`Detected label: ${label}\nCurrent state: \n${JSON.stringify(labelCounts)}`);
+  }, [labelCounts]);
 
   if (hasPermission === null || isTfReady === false) return <View />;
   if (hasPermission === false) return <Text>No access to camera!</Text>;
