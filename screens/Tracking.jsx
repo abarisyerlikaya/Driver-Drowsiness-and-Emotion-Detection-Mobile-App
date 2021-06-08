@@ -166,7 +166,7 @@ const Tracking = () => {
 
   // Log current state
   useEffect(() => {
-    console.log(`Detected label: ${label}\nCurrent state: \n${JSON.stringify(labelCounts)}`);
+    console.log(`Detected label:\n${label || "not detected"}\nCurrent state: \n${JSON.stringify(labelCounts)}\n\n`);
   }, [labelCounts]);
 
   if (hasPermission === null || isTfReady === false) return <View />;
