@@ -15,9 +15,10 @@ const playlists = {
 
 const ytProps = {
   height: 0,
-  forceAndroidAutoplay: true,
+  // forceAndroidAutoplay: true,
   webViewStyle: { opacity: 0 },
-  initialPlayerParams: { loop: true },
+  // initialPlayerParams: { loop: true },
+  //  webViewProps: { mediaPlaybackRequiresUserAction: false },
 };
 
 const tfProps = {

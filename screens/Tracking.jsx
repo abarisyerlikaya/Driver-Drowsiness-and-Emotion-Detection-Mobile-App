@@ -88,18 +88,20 @@ const Tracking = () => {
     loop();
   };
 
+  // Play drowsy music trigger
   useEffect(() => {
     if (shouldPlayDrowsy) {
       if (playlist.name !== playlists.drowsy[0].name) {
         setPlaylist(playlists.drowsy[0]);
-        restartSong();
         setLabelCounts({ drowsy: 0, neutral: 0, angry: 0, sad: 0, happy: 0 });
+        setTimeout(() => {
+          togglePlaying();
+          togglePlaying();
+        }, 2000);
       }
       setShouldPlayDrowsy(false);
     }
   }, [shouldPlayDrowsy]);
-
-  useEffect(() => console.log(labelCounts), [labelCounts]);
 
   // On state change callback
   const onStateChange = async state => {
@@ -116,35 +118,56 @@ const Tracking = () => {
     // Select next playlist and start it
     else if (state === "ended") {
       let max = "neutral";
-      console.log(labelCounts);
       if (labelCounts["angry"] > labelCounts[max]) max = "angry";
       if (labelCounts["happy"] > labelCounts[max]) max = "happy";
       if (labelCounts["sad"] > labelCounts[max]) max = "sad";
 
       // Change only if selected playlist is different from current playlist
-      console.log(playlists[max][0].name, playlist.name);
       if (playlists[max][0].name !== playlist.name) {
         setPlaylist(playlists[max][0]);
-        restartSong();
         setLabelCounts({ drowsy: 0, neutral: 0, angry: 0, sad: 0, happy: 0 });
+        setTimeout(() => {
+          togglePlaying();
+          togglePlaying();
+        }, 2000);
       }
     }
   };
 
   // Play / pause function
-  const togglePlaying = useCallback(async () => setPlaying(prev => !prev), []);
+  const togglePlaying = useCallback(async () => {
+    setPlaying(prev => !prev);
+  }, []);
 
+  // Time <- currentTime + seconds
   const seekTo = async seconds => {
     const currentTime = await ref.current.getCurrentTime();
     ref.current.seekTo(currentTime + seconds, true);
   };
 
+  // Skip current song and play next one
   const goToNextSong = async () => {
     const duration = await ref.current.getDuration();
     ref.current.seekTo(duration, true);
+    setTimeout(() => {
+      togglePlaying();
+      togglePlaying();
+    }, 100);
   };
 
-  const restartSong = () => ref.current.seekTo(0, true);
+  // Seek to 00:00
+  const restartSong = () => {
+    ref.current.seekTo(0, true);
+    setTimeout(() => {
+      togglePlaying();
+      togglePlaying();
+    }, 100);
+  };
+
+  // Log current state
+  useEffect(() => {
+    console.log(`Detected label: ${label}\nCurrent state: \n${labelCounts}`);
+  }, [label, labelCounts]);
 
   if (hasPermission === null || isTfReady === false) return <View />;
   if (hasPermission === false) return <Text>No access to camera!</Text>;
