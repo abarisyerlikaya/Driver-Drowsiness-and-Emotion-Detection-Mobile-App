@@ -175,7 +175,7 @@ const Tracking = () => {
     <View style={styles.container}>
       <TensorCamera {...tfProps} style={styles.camera} onReady={handleCameraStream} />
 
-      <Text style={styles.label}>{label}</Text>
+      {/* <Text style={styles.label}>{label}</Text> */}
 
       <Text style={styles.label}>{playlist.name}</Text>
 
