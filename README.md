@@ -1,5 +1,5 @@
 ### Demo Video
-[![video](https://drive.google.com/file/d/1ZeNc7NxNNsgtP-5VKJlWk_p33rPgd4Q8/preview)](https://drive.google.com/file/d/1ZeNc7NxNNsgtP-5VKJlWk_p33rPgd4Q8/preview)
+[![video](https://lh4.googleusercontent.com/qugnRG7XtZU49johuurKtXfRukESjHUyhUy0yrFgSCleSe00dXbNwm_LmZjx7tqkYGv6ZR54ibhDnMU3RzcY=w640-h360-k-rw-pd)](https://drive.google.com/file/d/1ZeNc7NxNNsgtP-5VKJlWk_p33rPgd4Q8)
 
 ### Setting Up
 
