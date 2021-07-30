@@ -1,3 +1,6 @@
+### Demo Video
+[![video](https://drive.google.com/file/d/1ZeNc7NxNNsgtP-5VKJlWk_p33rPgd4Q8/preview)](https://drive.google.com/file/d/1ZeNc7NxNNsgtP-5VKJlWk_p33rPgd4Q8/preview)
+
 ### Setting Up
 
 1. Configure and setup backend.
